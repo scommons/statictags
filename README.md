@@ -1,10 +1,13 @@
 # Static Tags
-[![Build Status](https://travis-ci.org/shogowada/statictags.svg?branch=master)](https://travis-ci.org/shogowada/statictags)
+[![Build Status](https://travis-ci.com/scommons/statictags.svg?branch=master)](https://travis-ci.com/scommons/statictags)
+[![scala-index](https://index.scala-lang.org/scommons/statictags/statictags/latest.svg)](https://index.scala-lang.org/scommons/statictags/statictags)
+[![Scala.js 0.6](https://www.scala-js.org/assets/badges/scalajs-0.6.29.svg)](https://www.scala-js.org)
+[![Scala.js 1.0](https://www.scala-js.org/assets/badges/scalajs-1.1.0.svg)](https://www.scala-js.org)
 
 |Platform|Artifact|Scala Version|Scala JS Version|
 |---|---|---|---|
-|JVM|```"io.github.shogowada" %% "statictags" % "2.5.0"```|2.11, 2.12|NA|
-|JS|```"io.github.shogowada" %%% "statictags" % "2.5.0"```|2.11, 2.12|0.6.14+|
+|JVM|```"org.scommons.shogowada" %% "statictags" % "2.6.0"```|2.12, 2.13|NA|
+|JS|```"org.scommons.shogowada" %%% "statictags" % "2.6.0"```|2.12, 2.13|0.6.29+, 1.1.0+|
 
 Static Tags makes it easy for you to write HTML in Scala.
 

@@ -3,15 +3,40 @@ sudo: false
 jdk:
   - oraclejdk8
 dist: trusty
+branches:
+  only:
+  - master
+  - /^v\d+\.\d+\.\d+$/
 scala:
-  - 2.11.12
   - 2.12.1
   - 2.13.1
 env:
+  global:
+  - TRAVIS_SBT_VERSION="1.2.8"
+  - secure: YG4zqXPrhbjEDdLEGxmmdOouIGkTxBP/F0OBID/0kjuHo740hJlDRRU9838rcpJbPJMEk7iz+Q4f+yXIhtbA3gjeBNqUrqPNIEKl07sZ3Obvyc07WYbuiYistOLxhAx2P9ZI+F+9QlmqBwLzgOvqCHfzppzhQqYTqABqdLERyfMThr3E6KsFZ+rq2WpBd4XDYcEU+w+nlh4B9UsrZCIu6UlhfpkSQJyP2q6lcKCxaq/luZV9TqXq8AYFy71mwpBA3C0rJpyvf/tfIa1bxsMXl62ebujeWKDfU2XnmJlZgJHudJMt4UmxsU2uFlp3Vb5M4m7MsTolqVwLemlHRowIk1Y6oUbX+sBnNI8f7zUZao080aTXdya5cu5b/JTfDrNS+55qOKOWNPhe6megmMdiYcAsdBF2bTZr5QzyjDM42j2vgt/dPTZHLUcw3dz5MpKyepSDJz9+Ep2SE/sfshko1cjgrBKxy+0PHhPmFNB5t0KNM7hXn3GyIhWGK10Gx/M29hA2m1Gb8KCX1SI1fht7EbmVvdeVZkJVij7Q1quy7e/67wtdRvybYTMf5uewa5CgXQF9QaCFR+iHZbhksob1rmRfRwLiwG7MvPPyKmfZHFxTDZElPJ0c7gXCuq3FejPTEueL6ez+VZ5dRQIdbbu+Rs+U3vcbHM9jaOxb+5vlWCc=
+  - secure: QyqGrYyuDxZ5lFuIxjvCCFX7WQyLmcmK5yOxC0MTJ8K6GZY1a+DgBygCq7n5wkv0Hte24zahsX/zW2cVFGq3rpVrwwgWX5rhg9go/JshA/TcZl5jDIWkGZMzZvfoVH8A8H3coIzrGVOkjrPbpu9exj+SLybf8sbflINGdX0CaWfXZHPMRRpbgA1T/rSfNrKBC08KunWqnjkDcO/OAyZjUcvtX2Ce/+EZLjFEWpP5137Nrcr1LmCPh/wOsaVtF0zlg/JQhHfYTNPhT5ePFKzberdwH7GPPnH0nKJaZDJQFGVW7lFdl58jS1MaN8V1TiZSob1tsTt6gCO0WudUQMuTOSSQiKc50GSjbod8HcBwviItM1XQoV8L2pXDlxNvb28rvqd55KPhJkQoP9WkH5U2uP4wmXDWH+XeyA92uA0C5/w1Zk9A03+ivKpH7DspwgN4w38x7N5+zH/WKKPQbLHjGSqnjUtU4UW/vCTWL56iLRmcpL98Sj5UW79D+rBZEodx36LBzkuMZV7kKr/iIRJtaAItum4L19nJkLqOXgpeCPEY/UOYQxux27dsy7oWeCphwHcX9c5hWZl9Njju19CfHaRdYMkdVWMYqZ9m1Ayige1x+QJEh6iiL3SbgzXlR6L+PQUQ2C4+t1BjXekG90aPg12+OaqP4h/jI6c9Eb6KZRo=
+  - secure: XvEsYD7IubSwW1ePVqGnsYddRjLTKuG+qhs0uVc+Ot26plGjO7iR/h8GlO1NOQsTTB+qpC3G3lQgL3Pjsn594vrcJrnqMFCTWVqtux+uaKpf2Y5r0gP/FUNUxVnSeidOWyXQ3vQ2Zf7ux34KdBIcEbAjPTj5lQL1pzAyJAbJg9rw+HhHNXWQu0ngLg9OvW6+JS6L8P0aeXuSkRhNspUlJ9Zxl1aQMjFv/TeGktE6eF0o+3Z5fMxkAml4uS0KJNl0cDxnI47QRjnYnJ+rss+076RrYhFVL/U8M6HKjMhdJeU1mvZm20/uuLF7D63cVgwSRK2H4JUc1nYrWSn9xjqMOpu9fRitl2D39+IdLGzV7jbeOmkjXzymKxmTwbLY/hsxN3EsdtZ7uvH0aosYEQGKAvS3ef/WwZkUc8961Y/Meqi6maED02s3ztTqsDFfV9awoWhfhsGHM1fOH9/eNKh3exOsX12xnPgQ50PLUjmmB1sC3t8kx+xQxiyV/iCdIzqRqCEd5CBzPnTTnXzxyUOcWL30yG28SC2iH6E270otmkSdFFiLMw4G7raPaTDXVGO4/erWMfWtxKT0XmVKSpEyvEOfYi2Afd5b+IXpp4CQkqY3XZIhQpmXu0tH+i648MckbXKYdjlfzOSsfKSknkAoncglT2syEhGvzSi6Z2YXiNY=
+  jobs:
   - SCALAJS_VERSION=0.6.29
   - SCALAJS_VERSION=1.1.0
+before_install:
+- if [ $TRAVIS_PULL_REQUEST = 'false' ]; then
+    openssl aes-256-cbc -K $encrypted_9575f030309c_key -iv $encrypted_9575f030309c_iv -in travis/secrets.tar.enc -out travis/secrets.tar -d;
+    tar xv -C travis -f travis/secrets.tar;
+  fi
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION test
+- sbt ++$TRAVIS_SCALA_VERSION test &&
+  if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" -o "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]; then
+    if [ -z "$TRAVIS_TAG" ]; then
+       echo "Publish a snapshot";
+       sbt ++$TRAVIS_SCALA_VERSION clean publish;
+    else
+       echo "Publish a release version=$TRAVIS_TAG";
+       version=$TRAVIS_TAG sbt ++$TRAVIS_SCALA_VERSION clean publishSigned sonatypeRelease;
+    fi
+  else
+    echo "This is not a master branch commit. Skipping the publish/release step";
+  fi
 cache:
   directories:
   - "$HOME/.ivy2/cache"
