@@ -1,6 +1,9 @@
 
 import sbtcrossproject.CrossProject
 
+val scalaJSVersion =
+  Option(System.getenv("SCALAJS_VERSION")).getOrElse("1.1.0")
+
 val commonSettings = Seq(
   organization := "org.scommons.shogowada",
   name := "statictags",
@@ -69,6 +72,10 @@ lazy val statictags = CrossProject("statictags", file("statictags"))(JSPlatform,
       libraryDependencies ++= Seq(
         "org.scalatest" %%% "scalatest" % "3.2.2" % "test"
       )
+    )
+    .jvmSettings(
+      // avoid double-publishing for the same Scala version but different Scala.js versions on CI
+      publishArtifact := scalaJSVersion.startsWith("1.")
     )
 
 lazy val jvm = statictags.jvm

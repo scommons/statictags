@@ -6,8 +6,8 @@
 
 |Platform|Artifact|Scala Version|Scala JS Version|
 |---|---|---|---|
-|JVM|```"org.scommons.shogowada" %% "statictags" % "2.6.0"```|2.12, 2.13|NA|
-|JS|```"org.scommons.shogowada" %%% "statictags" % "2.6.0"```|2.12, 2.13|0.6.29+, 1.1.0+|
+|JVM|```"org.scommons.shogowada" %% "statictags" % "2.6.1"```|2.12, 2.13|NA|
+|JS|```"org.scommons.shogowada" %%% "statictags" % "2.6.1"```|2.12, 2.13|0.6.29+, 1.1.0+|
 
 Static Tags makes it easy for you to write HTML in Scala.
 
